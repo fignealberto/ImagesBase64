@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'PickAndCrop2.dart';
+import 'ThePage2.dart';
 
 void main() => runApp(MyApp());
 
@@ -9,7 +9,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Welcome to Flutter',
       debugShowCheckedModeBanner: false,
-      home: PickAndCrop2(),
+      home: ThePage2(),
     );
   }
 }

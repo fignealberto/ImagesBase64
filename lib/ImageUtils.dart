@@ -2,8 +2,10 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
+import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
+import 'Settings.dart';
 
 Future<Uint8List> base64ToMemoryImage(String strBase64) async {
   return base64.decode(strBase64);
@@ -57,3 +59,27 @@ Future<void> deleteFile(String path) async {
     print("deleteFile: $e");
   }
 }
+
+Future<ImageProvider> getImageProvider(String strBase64) async {
+  if((strBase64 ?? '') != ''){
+    Uint8List bytes = await base64ToMemoryImage(strBase64);
+
+    if((bytes?.length ?? 0) > 0){
+      return MemoryImage(bytes);
+    }
+  }
+
+  return defaultUserImageProvider();
+}
+
+
+ImageProvider defaultUserImageProvider(){
+  return AssetImage(profileDefaultImage);
+}
+
+/*
+//para obtener dimensiones de una imagen
+decodeImageFromList(image.readAsBytesSync()).then((i){
+print('Image: width=${i.width}, height=${i.height}');
+});
+*/
